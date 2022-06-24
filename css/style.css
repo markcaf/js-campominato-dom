@@ -1,0 +1,59 @@
+body{
+    background-color: #011627;
+}
+
+div#grid-container{
+    margin: 0 auto;
+    width: 550px;
+    height: 550px;
+}
+
+div.square{
+    float: left;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    color: white;
+}
+
+#grid-container.easy .square{
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+}
+
+#grid-container.medium .square{
+    width: calc(100% / 9);
+    height: calc(100% / 9);
+}
+
+#grid-container.hard .square{
+    width: calc(100% / 7);
+    height: calc(100% / 7);
+}
+
+div.square{
+    border: 1px white solid;
+}
+
+div.square.clicked{
+    background-color:cornflowerblue;
+    color: #011627;
+}
+
+.clearfix::after{
+    content: '';
+    clear: both;
+    display: table;
+}
+
+header .ms_logo{
+    width: 10%;
+}
+
+header .form-select{
+    width: 30%;
+}
