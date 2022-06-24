@@ -34,7 +34,7 @@ let block = false;
         for (let i=0; i<100; i++){
             const newSquare = createNewSquare();
 
-            newSquare.innerHTML = i + 1;
+            // newSquare.innerHTML = i + 1;
 
             newSquare.addEventListener("click", function(){
                 if (block === false){
@@ -71,7 +71,7 @@ let block = false;
         for (let i=0; i<81; i++){
         const newSquare = createNewSquare();
     
-        newSquare.innerHTML = i + 1;
+        // newSquare.innerHTML = i + 1;
     
         newSquare.addEventListener("click", function(){
             if (block === false){
@@ -107,7 +107,7 @@ let block = false;
         for (let i=0; i<49; i++){
         const newSquare = createNewSquare();
     
-        newSquare.innerHTML = i + 1;
+        // newSquare.innerHTML = i + 1;
     
         newSquare.addEventListener("click", function(){
             if (block === false){
