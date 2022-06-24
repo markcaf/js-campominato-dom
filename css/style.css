@@ -44,6 +44,11 @@ div.square.clicked{
     color: #011627;
 }
 
+div.square.bomb{
+    background-color:red;
+    color: #011627;
+}
+
 .clearfix::after{
     content: '';
     clear: both;
