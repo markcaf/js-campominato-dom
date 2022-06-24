@@ -44,7 +44,11 @@ let block = false;
                         newSquare.classList.add("bomb");
                         console.log("HAI PRESO UNA BOMBA!");
                         block = true;
-                        alert("Hai preso una bomba e la partita è finita, hai totalizzato " + document.querySelectorAll(".clicked").length + " punti");
+                        if (document.querySelectorAll(".clicked").length == (100 - 16)){
+                            alert("Complimenti, hai vinto!");
+                        } else{
+                            alert("Hai preso una bomba e la partita è finita, hai totalizzato " + document.querySelectorAll(".clicked").length + " punti");
+                            }
                     }
                     console.log("Hai cliccato il numero " + (i + 1));
                 }
@@ -56,6 +60,7 @@ let block = false;
 
     if (selectLevel.value == 2){
         document.getElementById("grid-container").innerHTML = "";
+        block = false;
 
         console.log(generateBombMedium);
 
@@ -69,16 +74,24 @@ let block = false;
         newSquare.innerHTML = i + 1;
     
         newSquare.addEventListener("click", function(){
-            newSquare.classList.toggle("clicked");
-            if (generateBombMedium.includes(i + 1)){
-                newSquare.classList.remove("clicked");
-                newSquare.classList.add("bomb");
-                console.log("HAI PRESO UNA BOMBA!")
+            if (block === false){
+                newSquare.classList.add("clicked");
+                if (generateBombMedium.includes(i + 1)){
+                    newSquare.classList.remove("clicked");
+                    newSquare.classList.add("bomb");
+                    console.log("HAI PRESO UNA BOMBA!");
+                    block = true;
+                    if (document.querySelectorAll(".clicked").length == (81 - 16)){
+                        alert("Complimenti, hai vinto!");
+                    } else{
+                        alert("Hai preso una bomba e la partita è finita, hai totalizzato " + document.querySelectorAll(".clicked").length + " punti");
+                        }
+                }
+                console.log("Hai cliccato il numero " + (i + 1));
             }
-            console.log("Hai cliccato il numero " + (i + 1));
         });
     
-        gridContainer.append(newSquare)
+            gridContainer.append(newSquare)
         }
     }
 
@@ -97,13 +110,21 @@ let block = false;
         newSquare.innerHTML = i + 1;
     
         newSquare.addEventListener("click", function(){
-            newSquare.classList.toggle("clicked");
-            if (generateBombHard.includes(i + 1)){
-                newSquare.classList.remove("clicked");
-                newSquare.classList.add("bomb");
-                console.log("HAI PRESO UNA BOMBA!")
+            if (block === false){
+                newSquare.classList.add("clicked");
+                if (generateBombHard.includes(i + 1)){
+                    newSquare.classList.remove("clicked");
+                    newSquare.classList.add("bomb");
+                    console.log("HAI PRESO UNA BOMBA!");
+                    block = true;
+                    if (document.querySelectorAll(".clicked").length == (49 - 16)){
+                        alert("Complimenti, hai vinto!");
+                    } else{
+                        alert("Hai preso una bomba e la partita è finita, hai totalizzato " + document.querySelectorAll(".clicked").length + " punti");
+                        }
+                }
+                console.log("Hai cliccato il numero " + (i + 1));
             }
-            console.log("Hai cliccato il numero " + (i + 1));
         });
     
         gridContainer.append(newSquare)
