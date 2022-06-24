@@ -12,12 +12,16 @@ playGame.addEventListener("click", function(){
 // Dichiaro la variabile del select per il cambio il livello di difficoltà
 const selectLevel = document.querySelector('.form-select');
 
-// Dichiaro la mia variabile per la funzione di generazione di 16 numeri random
-let generateBomb = randomBombNumber(1, 100);
-console.log(generateBomb);
+// Dichiaro le variabili per la funzione di generazione di 16 numeri random
+// In base al livello e al suo range utilizzo la funzione con argomenti differenti
+let generateBombEasy = randomBombNumber(1, 100);
+let generateBombMedium = randomBombNumber(1, 81);
+let generateBombHard = randomBombNumber(1, 49)
 
     if (selectLevel.value == 1){
         document.getElementById("grid-container").innerHTML = "";
+
+        console.log(generateBombEasy);
 
         gridContainer.classList.add("easy");
         gridContainer.classList.remove("medium", "hard");
@@ -30,9 +34,10 @@ console.log(generateBomb);
 
             newSquare.addEventListener("click", function(){
                 newSquare.classList.add("clicked");
-                if (generateBomb.includes(i + 1)){
+                if (generateBombEasy.includes(i + 1)){
                     newSquare.classList.remove("clicked");
                     newSquare.classList.add("bomb");
+                    console.log("HAI PRESO UNA BOMBA!")
                 }
                 console.log("Hai cliccato il numero " + (i + 1));
             });
@@ -45,6 +50,8 @@ console.log(generateBomb);
     if (selectLevel.value == 2){
         document.getElementById("grid-container").innerHTML = "";
 
+        console.log(generateBombMedium);
+
         gridContainer.classList.add("medium");
         gridContainer.classList.remove("easy", "hard");
 
@@ -56,6 +63,11 @@ console.log(generateBomb);
     
         newSquare.addEventListener("click", function(){
             newSquare.classList.toggle("clicked");
+            if (generateBombMedium.includes(i + 1)){
+                newSquare.classList.remove("clicked");
+                newSquare.classList.add("bomb");
+                console.log("HAI PRESO UNA BOMBA!")
+            }
             console.log("Hai cliccato il numero " + (i + 1));
         });
     
@@ -65,6 +77,8 @@ console.log(generateBomb);
 
     if (selectLevel.value == 3){
         document.getElementById("grid-container").innerHTML = "";
+
+        console.log(generateBombHard);
 
         gridContainer.classList.add("hard");
         gridContainer.classList.remove("medium", "easy");
@@ -77,6 +91,11 @@ console.log(generateBomb);
     
         newSquare.addEventListener("click", function(){
             newSquare.classList.toggle("clicked");
+            if (generateBombHard.includes(i + 1)){
+                newSquare.classList.remove("clicked");
+                newSquare.classList.add("bomb");
+                console.log("HAI PRESO UNA BOMBA!")
+            }
             console.log("Hai cliccato il numero " + (i + 1));
         });
     
