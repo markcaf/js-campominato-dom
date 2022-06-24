@@ -18,8 +18,12 @@ let generateBombEasy = randomBombNumber(1, 100);
 let generateBombMedium = randomBombNumber(1, 81);
 let generateBombHard = randomBombNumber(1, 49)
 
+// Creo una variabile di stato per verificare la vittoria/sconfitta del giocatore
+let block = false;
+
     if (selectLevel.value == 1){
         document.getElementById("grid-container").innerHTML = "";
+        block = false;
 
         console.log(generateBombEasy);
 
@@ -33,18 +37,21 @@ let generateBombHard = randomBombNumber(1, 49)
             newSquare.innerHTML = i + 1;
 
             newSquare.addEventListener("click", function(){
-                newSquare.classList.add("clicked");
-                if (generateBombEasy.includes(i + 1)){
-                    newSquare.classList.remove("clicked");
-                    newSquare.classList.add("bomb");
-                    console.log("HAI PRESO UNA BOMBA!")
+                if (block === false){
+                    newSquare.classList.add("clicked");
+                    if (generateBombEasy.includes(i + 1)){
+                        newSquare.classList.remove("clicked");
+                        newSquare.classList.add("bomb");
+                        console.log("HAI PRESO UNA BOMBA!");
+                        block = true;
+                        alert("Hai preso una bomba e la partita è finita, hai totalizzato " + document.querySelectorAll(".clicked").length + " punti");
+                    }
+                    console.log("Hai cliccato il numero " + (i + 1));
                 }
-                console.log("Hai cliccato il numero " + (i + 1));
             });
 
             gridContainer.append(newSquare)
         }
-
     }
 
     if (selectLevel.value == 2){
