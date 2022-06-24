@@ -9,8 +9,12 @@ console.log(playGame);
 // Al click sul pulsante Play viene mostrata la griglia e resettata se è stata già caricata
 playGame.addEventListener("click", function(){
 
-    // Dichiario la variabile del select per il cambio il livello di difficoltà
-    const selectLevel = document.querySelector('.form-select');
+// Dichiaro la variabile del select per il cambio il livello di difficoltà
+const selectLevel = document.querySelector('.form-select');
+
+// Dichiaro la mia variabile per la funzione di generazione di 16 numeri random
+let generateBomb = randomBombNumber(1, 100);
+console.log(generateBomb);
 
     if (selectLevel.value == 1){
         document.getElementById("grid-container").innerHTML = "";
@@ -20,17 +24,23 @@ playGame.addEventListener("click", function(){
 
         // Creo un ciclo FOR per il numero di quadrati da generare
         for (let i=0; i<100; i++){
-        const newSquare = createNewSquare();
+            const newSquare = createNewSquare();
 
-        newSquare.innerHTML = i + 1;
+            newSquare.innerHTML = i + 1;
 
-        newSquare.addEventListener("click", function(){
-            newSquare.classList.toggle("clicked");
-            console.log("Hai cliccato il numero " + (i + 1));
-        });
+            newSquare.addEventListener("click", function(){
+                newSquare.classList.add("clicked");
+                if (generateBomb.includes(i + 1)){
+                    newSquare.classList.remove("clicked");
+                    newSquare.classList.add("bomb");
+                }
+                console.log("Hai cliccato il numero " + (i + 1));
+            });
 
-        gridContainer.append(newSquare)
-        }}
+            gridContainer.append(newSquare)
+        }
+
+    }
 
     if (selectLevel.value == 2){
         document.getElementById("grid-container").innerHTML = "";
@@ -50,7 +60,8 @@ playGame.addEventListener("click", function(){
         });
     
         gridContainer.append(newSquare)
-        }}
+        }
+    }
 
     if (selectLevel.value == 3){
         document.getElementById("grid-container").innerHTML = "";
@@ -70,7 +81,8 @@ playGame.addEventListener("click", function(){
         });
     
         gridContainer.append(newSquare)
-        }}
+        }
+    }
 })
 
 
@@ -79,4 +91,20 @@ function createNewSquare (){
     const currentSquare = document.createElement("div");
     currentSquare.classList.add("square");
     return currentSquare;
+}
+
+
+// Funzione di creazione di un numero random, che sarà la nostra bomba
+    //Creo l'array blacklist che andrà riempito per non creare duplicati
+    // Continua finché l'array blacklist non ha 16 elementi
+    // Genero un numero random e se non presente nella lista lo ritorna
+function randomBombNumber(min, max){
+    let blackList = [];
+    while ( blackList.length < 16 ){
+        let randomNumber = Math.round(Math.random() * (max - min) + min);
+        if ( blackList.includes(randomNumber) === false ){
+        blackList.push(randomNumber);
+        }
+    }
+    return blackList;
 }
